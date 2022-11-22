@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Главная страница</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+
+    <body>
+        <a href="profile">
+            Профиль
+        </a>
+        <a href="products">
+            Продукты
+        </a>
+        <div class="title-home">
+            Добро пожаловать на мой сайт
+        </div>
+        <div>
+            <img class="img-home" src="{% static 'imghome.jpg' %}" />
+        </div>
+    </body>
+</html>
