@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Products
+from django.core.files.storage import FileSystemStorage
+from .models import Posts
+
 
 # Create your views here.
 
@@ -12,14 +14,28 @@ def index(request):
 def profile(request):
     return render(request, 'profile.html')
 
-def products(request):
-    products = Products.objects.all()
-    return render(request, 'products.html', {'products': products})
+# POSTS
+def posts(request):
+    posts = Posts.objects.all()
+    return render(request, 'posts.html', {'posts': posts})
 
-def create(request):
-    if request.method == "POST":
-        product = Products()
-        product.name = request.POST.get("name")
-        product.price = request.POST.get("price")
-        product.save()
-    return HttpResponseRedirect("/products")
+# NEWPOST
+def newpost(request):
+    title = request.POST.get('title')
+    text = request.POST.get('text')
+    file = request.FILES['file']
+    fss = FileSystemStorage('appshop/static/images/')
+    saved_file = fss.save(file.name, file)
+    
+    post = Posts()
+    post.title = title
+    post.text = text
+    post.image = file.name
+    post.save()
+    return HttpResponseRedirect('/posts')
+
+def postinfo(request, id):
+    post = Posts.objects.get(id=id)
+    return render(request, 'postinfo.html', {'post': post})
+
+

@@ -1,8 +1,9 @@
 from django.db import models
 
-class Products(models.Model):
-    name = models.CharField(max_length=100)
-    price = models.IntegerField()
+class Posts(models.Model):
+    title = models.CharField(max_length=100)
+    text = models.TextField()
+    image = models.CharField(max_length=200, default='')
 
     def __str__(self):
-        return self.name
+        return self.title
