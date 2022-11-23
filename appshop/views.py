@@ -34,8 +34,34 @@ def newpost(request):
     post.save()
     return HttpResponseRedirect('/posts')
 
-def postinfo(request, id):
+# POST INFO
+def post(request, id):
     post = Posts.objects.get(id=id)
-    return render(request, 'postinfo.html', {'post': post})
+    return render(request, 'post.html', {'post': post})
+
+# EDIT POST
+def editpost(request, id):
+    post = Posts.objects.get(id=id)
+    return render(request, 'editpost.html', {'post': post})
+
+
+# SAVE EDIT POST
+def saveeditpost(request, id):
+    post = Posts.objects.get(id=id)
+    title = request.POST.get('title')
+    text = request.POST.get('text')
+    file = request.FILES['file']
+    fss = FileSystemStorage('appshop/static/images/')
+    saved_file = fss.save(file.name, file)
+    
+    post.title = title
+    post.text = text
+    post.image = file.name
+    
+    post.save()
+
+    return HttpResponseRedirect('/posts')
+
+
 
 

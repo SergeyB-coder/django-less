@@ -7,15 +7,18 @@
 
 {% block content %}
         {% for post in posts %}
-            <div class="border border-3 border-info w-25 m-2 p-3 rounded">
-                <h3 class="fs-1">{{post.title}}</h3>
-                <img style="width: 10vw;" src="static/images/{{post.image}}" alt=""/>
-                <a href="postinfo/{{post.id}}">
-                    <div class="fs-5">{{post.text}}</div>
+
+            <div style="width: 25vw;">
+                <a style="text-decoration: none; "  href="post/{{post.id}}">
+                    <div class="border border-3 border-info  m-2 p-3 rounded">
+                        <h3 style="color: rgb(57, 42, 42);" class="fs-1">{{post.title}}</h3>
+                        <img style="width: 10vw; " src="/static/images/{{post.image}}" alt=""/>
+                        <div style="color: rgb(57, 42, 42);" class="fs-5">{{post.text}}</div>
+                    </div>
                 </a>
             </div>
-        {% endfor %}
 
+        {% endfor %}
         <div>
             <form action="newpost" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}

@@ -9,5 +9,7 @@ urlpatterns = [
     path('profile', views.profile),
     path('posts', views.posts),
     path('newpost', views.newpost),
-    path("postinfo/<int:id>/", views.postinfo),
+    path('post/<int:id>', views.post),
+    path('editpost/<int:id>', views.editpost),
+    path('saveeditpost/<int:id>', views.saveeditpost),
 ]
