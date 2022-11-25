@@ -12,6 +12,32 @@
     </head>
 
     <body>
+        <div class="row">
+            <div class="col-2">
+                <a class="btn btn-success m-3" href="/">
+                    Главная
+                </a>
+            </div>
+            <div class="col-5">
+                <a class="btn btn-success m-3" href="/posts">
+                    Лента
+                </a>
+            </div>            
+
+            {% if user.is_authenticated %}
+                <div class="col-2 m-3">
+                    <p class="m-0 p-0">{{user}}</p>
+                    <a href="/logout">Выйти</a>
+                </div>
+                
+            {% else %}
+                <div class="col-2">
+                    <a class="btn btn-success m-3" href="/login">
+                        Вход
+                    </a>
+                </div>
+            {% endif %}
+        </div>
         {% block content %}
         {% endblock %}
     </body>

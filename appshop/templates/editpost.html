@@ -7,10 +7,11 @@
 
 {% block content %}
             <form class="border border-3 border-info w-50 m-2 p-3 rounded" 
-                action="saveeditpost" 
+                action="/saveeditpost/{{post.id}}" 
                 method="POST" 
                 enctype="multipart/form-data"
             >
+                {% csrf_token %}
                 <input name="title" type="text" style="color: rgb(57, 42, 42);" class="fs-1" value="{{post.title}}"/>
                 <img style="width: 40vw; " src="/static/images/{{post.image}}" alt=""/>
                 <input type="file" name="file"/>
